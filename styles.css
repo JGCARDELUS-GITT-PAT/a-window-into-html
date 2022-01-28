@@ -1,0 +1,322 @@
+* {
+	padding: 0;
+	margin: 0;
+	border: 0px solid black;
+}
+
+header {
+	padding-left: 1rem;
+	padding-right: 1rem;
+	padding-top: 1rem;
+
+	background-color: black;
+	color: white;
+}
+
+header > div {
+	display: flex;
+	justify-content: center;
+}
+
+header > div > h1 {
+	font-size: 24px;
+}
+
+header > nav {
+	margin-top: 0.5rem;
+
+	display: flex;
+	justify-content: center;
+}
+
+header > nav > div {
+	display: flex;
+}
+
+header .header-item {
+	padding: 0.5rem 1.5rem;
+
+	color: white;
+	border-right: 1px solid black;
+
+	transition-duration: 0.25s;
+}
+
+header .header-item:hover {
+	background-color: rgb(229, 255, 0);
+	color: black;
+
+	transition-duration: 0.25s;
+}
+
+header .header-item:hover a {
+	color: black;
+
+	transition-duration: 0.25s;
+}
+
+header .header-item:last-child {
+	border-right: 0px solid black !important;
+}
+
+header .header-item a {
+	text-decoration: none;
+	font-family: "Verdana";
+	font-size: 14px;
+	color: white;
+
+	transition-duration: 0.25s;
+}
+
+div.card {
+	padding: 2rem;
+	margin: 1rem;
+	border-radius: 15px;
+
+	-webkit-box-shadow: 0px 0px 40px -15px rgba(0, 0, 0, 0.75);
+	-moz-box-shadow: 0px 0px 40px -15px rgba(0, 0, 0, 0.75);
+	box-shadow: 0px 0px 40px -15px rgba(0, 0, 0, 0.75);
+}
+
+div.card > div.card-body {
+	padding: 2rem;
+}
+
+div.card.no-padding {
+	padding: 0rem !important;
+}
+
+div.card > h2 {
+	margin-bottom: 1rem;
+}
+
+footer {
+	position: relative;
+	bottom: 0;
+
+	width: 100%;
+	padding: 2rem;
+
+	background-color: black;
+	color: white;
+}
+
+footer > h2 {
+	padding-bottom: 0.5rem;
+}
+
+footer > table > tr {
+	padding: 0.5rem;
+}
+
+button {
+	padding: 0.5rem;
+	border-radius: 15px;
+
+	transition-duration: 0.25s;
+}
+
+button:hover {
+	background-color: rgb(229, 255, 0);
+	color: black;
+
+	transition-duration: 0.25s;
+}
+
+h2,
+p,
+h1,
+li,
+td,
+th,
+button {
+	font-family: "Verdana";
+}
+
+#image {
+	display: flex;
+	justify-content: center;
+	height: 40vh;
+	width: auto;
+}
+
+.card form {
+	padding-top: 1rem;
+
+	border-radius: 0 0 10px 10px;
+
+	background-color: black;
+	color: white;
+
+	width: 100%;
+}
+
+.card form .form-group {
+	margin-bottom: 0.5rem;
+	width: 100%;
+
+	padding-bottom: 0.5rem;
+}
+
+.card form .form-group label p {
+	padding-left: 1rem;
+	padding-bottom: 0.25rem;
+
+	font-size: 16px;
+}
+
+.card form .form-group input {
+	width: calc(100% - 2rem);
+}
+
+.card form .round-button {
+	display: flex;
+	justify-content: center;
+
+	padding-top: 1rem;
+	padding-bottom: 1rem;
+}
+
+.card form .round-button button {
+	padding-top: 1rem;
+	padding-bottom: 1rem;
+
+	border-radius: 25px;
+
+	width: 80%;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="number"] {
+	padding: 1rem;
+
+	font-family: "Verdana";
+
+	color: rgb(229, 255, 0);
+	background: black;
+
+	border-bottom: 1px solid rgb(229, 255, 0);
+
+	transition-duration: 0.25s;
+}
+
+input[type="text"]:hover,
+input[type="email"]:hover,
+input[type="number"]:hover {
+	background: rgb(42, 46, 0);
+
+	transition-duration: 0.25s;
+}
+
+.modal {
+	position: absolute;
+	width: 100vw;
+	height: 100%;
+
+	top: 0;
+	left: 0;
+
+	z-index: 100;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal .modal-content {
+	margin: 10rem;
+	padding: 1rem;
+	background-color: white;
+	border-radius: 15px;
+
+	height: auto;
+}
+
+.modal .modal-content div {
+	display: flex;
+	justify-content: center;
+}
+
+.modal .modal-content h1,
+.modal .modal-content p {
+	color: black;
+}
+
+#modal-info {
+	padding: 1rem;
+
+	display: flex;
+	flex-direction: column;
+}
+
+#modal-info div {
+	width: 100%;
+}
+
+#modal-info div img {
+	height: 200px;
+	width: auto;
+}
+
+#modal-action {
+	display: flex;
+	justify-content: center;
+}
+
+#modal-action #modal-action-button {
+	width: 50%;
+	border-radius: 25px;
+	padding: 1rem;
+}
+
+#easter-egg > div {
+	display: flex;
+	justify-content: center;
+}
+
+#easter-egg img:hover {
+	/* Start the shake animation and make the animation last for 0.5 seconds */
+	animation: shake 0.5s;
+
+	/* When the animation is finished, start again */
+	animation-iteration-count: infinite;
+}
+
+@keyframes shake {
+	0% {
+		transform: translate(1px, 1px) rotate(0deg);
+	}
+	10% {
+		transform: translate(-1px, -2px) rotate(-1deg);
+	}
+	20% {
+		transform: translate(-3px, 0px) rotate(1deg);
+	}
+	30% {
+		transform: translate(3px, 2px) rotate(0deg);
+	}
+	40% {
+		transform: translate(1px, -1px) rotate(1deg);
+	}
+	50% {
+		transform: translate(-1px, 2px) rotate(-1deg);
+	}
+	60% {
+		transform: translate(-3px, 1px) rotate(0deg);
+	}
+	70% {
+		transform: translate(3px, 1px) rotate(-1deg);
+	}
+	80% {
+		transform: translate(-1px, -1px) rotate(1deg);
+	}
+	90% {
+		transform: translate(1px, 2px) rotate(0deg);
+	}
+	100% {
+		transform: translate(1px, -2px) rotate(-1deg);
+	}
+}

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Microsoft - About Us</title>
+
+		<link rel="stylesheet" href="styles.css" />
+	</head>
+	<body>
+		<noscript
+			>Hey, don't worry we almost don't use JavaScript here. We are that
+			cool ;)</noscript
+		>
+		<div class="modal" id="modal">
+			<div class="modal-content">
+				<h1>Hi there!</h1>
+				<div id="modal-info">
+					<div>
+						<p>
+							Please understand this page is meant as a joke.
+							Don't take this too seriously Windows boi.
+						</p>
+					</div>
+
+					<div>
+						<img src="./assets/rick.gif" alt="" />
+					</div>
+				</div>
+				<div id="modal-action">
+					<button id="modal-action-button">
+						Tight, extremly tight.
+					</button>
+				</div>
+			</div>
+
+			<script>
+				const showModal = localStorage.getItem("modalShown");
+				const button = document.getElementById("modal-action-button");
+				const modal = document.getElementById("modal");
+
+				if (showModal == null) {
+					modal.style.display = "block";
+					localStorage.setItem("modalShown", "1");
+				} else {
+					modal.style.display = "none";
+				}
+
+				button.addEventListener("click", () => {
+					modal.style.display = "none";
+				});
+			</script>
+		</div>
+		<header>
+			<div>
+				<h1>Welcome to Microsoft's very own webpage</h1>
+			</div>
+			<nav>
+				<div>
+					<div class="header-item">
+						<a href="./index.html">About us</a>
+					</div>
+					<div class="header-item">
+						<a href="./hardware.html">Surface</a>
+					</div>
+					<div class="header-item">
+						<a href="./store.html">Store</a>
+					</div>
+				</div>
+			</nav>
+		</header>
+
+		<div class="card">
+			<h2>Press this button to reset the warning.</h2>
+			<button id="this-button">This button</button>
+			<script>
+				const thisButton = document.getElementById("this-button");
+
+				thisButton.addEventListener("click", () => {
+					localStorage.setItem("modalShown", null);
+					modal.style.display = "block";
+				});
+			</script>
+		</div>
+
+		<div class="card">
+			<h2>Who are we?</h2>
+			<p>
+				We are a company that cannot get it's head straight. We have
+				awesome products like Azure and VSCode but we have no idea on
+				how to make a OS. Our backwards compatibility, while necessary,
+				makes updating core feature of the OS impossible and destroys UI
+				cohesiveness. We also have amazing projects like our AR glasses
+				that have gained no traction and our hardware products are so
+				overpriced that almost no one buys it, except the Surface.
+				Surface is cool. We aso tried doing phones once, do you remeber
+				that? Of course not, no developers developed for Windows Phone
+				so no apps were available and switching was horrible, so no one
+				did.
+			</p>
+		</div>
+
+		<div class="card">
+			<h2>What products do we offer?</h2>
+			<p>Among other things, we offer:</p>
+			<ul>
+				<li>
+					Windows 11 - Our OS. It sucks. It's slow and the UI it's not
+					cohesive.
+				</li>
+				<li>
+					Surface - Our hardware. It's a bit overpriced, but they are
+					really nice.
+				</li>
+				<li>
+					Azure - Our cloud computing. This is actually really good,
+					but AWS keeps beating us in sales.
+				</li>
+				<li>
+					Open source projects - Recently we've started to do some
+					open source projects which are awesome (like VSCode).
+				</li>
+				<li>
+					Edge - This is our browser... well it's not. It runs on
+					Chromium so it's basically Chrome with a face-lift. Google
+					is so cool.
+				</li>
+				<li>
+					VSCode - We had to mention it twice, it's awesome. Best text
+					editor ever. The bad thing (or not, it depends) it's that it
+					also runs on Chromium through Electron, so it's also
+					Google's.
+				</li>
+				<li>
+					Office - We have the monopoly on office stuff. Google Docs
+					is cathing up but let's be honest, Word can't be beaten.
+				</li>
+			</ul>
+		</div>
+
+		<div class="card">
+			<h2>This is your classic lorem ipsum</h2>
+			<p>
+				Lorem ipsum dolor, sit amet consectetur adipisicing elit. Alias
+				temporibus voluptate, tenetur veritatis fugit ut commodi
+				dignissimos atque, esse laboriosam veniam consequatur mollitia
+				autem perspiciatis vitae voluptatum, necessitatibus accusamus
+				illum!
+			</p>
+		</div>
+
+		<footer>
+			<h2>This is a footer.</h2>
+			<p>
+				We just learned how to do tables... So this is a table, WITH
+				LINKS????!?!?!??!??!
+			</p>
+			<table>
+				<tr>
+					<th>Page name</th>
+					<th>Button to get there</th>
+				</tr>
+				<tr>
+					<td>About us</td>
+					<td>
+						<a href="./index.html">
+							<button>Click me!</button>
+						</a>
+					</td>
+				</tr>
+				<tr>
+					<td>Surface</td>
+					<td>
+						<a href="./hardware.html">
+							<button>Click me!</button>
+						</a>
+					</td>
+				</tr>
+				<tr>
+					<td>Store</td>
+					<td>
+						<a href="./store">
+							<button>Click me!</button>
+						</a>
+					</td>
+				</tr>
+			</table>
+		</footer>
+	</body>
+</html>

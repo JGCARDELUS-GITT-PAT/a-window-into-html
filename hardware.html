@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Microsoft - Hardware</title>
+
+		<link rel="stylesheet" href="styles.css" />
+	</head>
+	<body>
+		<noscript
+			>Hey, don't worry we almost don't use JavaScript here. We are that
+			cool ;)</noscript
+		>
+		<div class="modal" id="modal">
+			<div class="modal-content">
+				<h1>Hi there!</h1>
+				<div id="modal-info">
+					<p>
+						Please understand this page is meant as a joke. Don't
+						take this too seriously Windows boi.
+					</p>
+				</div>
+				<div id="modal-action">
+					<button id="modal-action-button">
+						Tight, extremly tight.
+					</button>
+				</div>
+			</div>
+
+			<script>
+				const showModal = localStorage.getItem("modalShown");
+				const button = document.getElementById("modal-action-button");
+				const modal = document.getElementById("modal");
+
+				if (showModal == null) {
+					modal.style.display = "block";
+					localStorage.setItem("modalShown", "1");
+				} else {
+					modal.style.display = "none";
+				}
+
+				button.addEventListener("click", () => {
+					modal.style.display = "none";
+				});
+			</script>
+		</div>
+		<header>
+			<div>
+				<h1>Welcome to Microsoft's very own webpage</h1>
+			</div>
+			<nav>
+				<div>
+					<div class="header-item">
+						<a href="./index.html">About us</a>
+					</div>
+					<div class="header-item">
+						<a href="./hardware.html">Surface</a>
+					</div>
+					<div class="header-item">
+						<a href="./store.html">Store</a>
+					</div>
+				</div>
+			</nav>
+		</header>
+
+		<div class="card">
+			<h2>Checkout our Surface products</h2>
+			<div id="image">
+				<img
+					src="./assets/surface.jpeg"
+					alt="This is a surface image"
+				/>
+			</div>
+		</div>
+
+		<div class="card">
+			<h2>This is the only photo we have.</h2>
+			<p>
+				Sadly our intern deleted all photos, so we only have that one.
+			</p>
+		</div>
+
+		<div class="card" id="easter-egg">
+			<h2>This is an easter-egg.</h2>
+			<p>I wonder what happens when you click the egg?</p>
+			<div>
+				<div id="super-secret-easter-egg">
+					<img
+						id="super-secret-easter-egg-img"
+						src="./assets/easter-egg.png"
+						alt="An easter egg"
+					/>
+				</div>
+				<div id="canvas" style="display: none"></div>
+			</div>
+
+			<script src="p5.js"></script>
+			<script>
+				const easterEgg = document.getElementById(
+					"super-secret-easter-egg"
+				);
+				const hideEasterEgg =
+					document.getElementById("hide-easter-egg");
+				const canvas = document.getElementById("canvas");
+
+				const canvasSize = { x: 600, y: 600 };
+				let paused = true;
+				const color = "#e5ff00";
+
+				const show = () => {
+					easterEgg.style.display = "none";
+					canvas.style.display = "block";
+					paused = false;
+				};
+
+				const hide = () => {
+					easterEgg.style.display = "block";
+					canvas.style.display = "none";
+					paused = true;
+				};
+
+				easterEgg.addEventListener("click", () => {
+					show();
+				});
+
+				class Ball {
+					constructor() {
+						this.x = 0;
+						this.y = 0;
+
+						this.r = 40;
+
+						this.xVel = 7;
+						this.yVel = 5;
+
+						this.reset();
+					}
+
+					reset() {
+						this.goToStart();
+					}
+
+					goToStart() {
+						this.x = canvasSize.x / 2;
+						this.y = canvasSize.y / 4;
+					}
+
+					draw() {
+						fill(color);
+						ellipse(this.x, this.y, this.r, this.r);
+					}
+
+					bounce() {
+						let nextX = this.x;
+						let nextY = this.y;
+
+						if (nextX + this.r / 2 >= canvasSize.x) {
+							this.xVel = -1 * this.xVel;
+						} else if (nextX - this.r / 2 <= 0) {
+							this.xVel = -1 * this.xVel;
+						}
+
+						if (nextY + this.r / 2 >= canvasSize.y) {
+							this.yVel = -1 * this.yVel;
+						} else if (nextY - this.r / 2 <= 0) {
+							this.yVel = -1 * this.yVel;
+						}
+					}
+
+					move() {
+						this.bounce();
+
+						this.x += this.xVel;
+						this.y += this.yVel;
+					}
+				}
+
+				class Player {
+					constructor() {
+						this.x = 300;
+						this.y = 550;
+
+						this.width = 100;
+						this.height = 20;
+
+						this.accel = 0.01;
+						this.maxVel = 1;
+						this.vel = 0;
+					}
+
+					goToMiddle() {
+						this.x = canvasSize.x / 2;
+					}
+
+					move() {
+						let nextX = mouseX;
+						// Avoid going off the screen
+						if (nextX <= 0) {
+							nextX = 0;
+						} else if (nextX + this.width >= canvasSize.x) {
+							nextX = canvasSize.x - this.width;
+						}
+						this.x = nextX;
+					}
+
+					draw() {
+						fill(color);
+						rect(this.x, this.y, this.width, this.height);
+					}
+				}
+
+				class Game {
+					constructor() {
+						this.player = new Player();
+						this.balls = [new Ball()];
+
+						this.opponentPoints = 0;
+						this.playerPoints = 0;
+
+						this.respawnRate = 10;
+					}
+
+					addPlayerPoint() {
+						this.playerPoints += 1;
+						if (this.playerPoints % this.respawnRate === 0) {
+							if (this.balls.length < 4) {
+								this.addBall();
+							}
+						}
+					}
+
+					addOpponentPoint() {
+						this.opponentPoints += 1;
+					}
+
+					addBall() {
+						this.balls.push(new Ball());
+					}
+
+					getRandomVel() {
+						let randomNum = Math.random() * (7 - 3) + 3;
+						return Math.round(randomNum);
+					}
+
+					checkBallWin(ball) {
+						if (ball.y > this.player.y + this.player.height) {
+							ball.xVel = this.getRandomVel();
+							ball.yVel = this.getRandomVel();
+							this.addOpponentPoint();
+							ball.reset();
+						}
+					}
+
+					collission(ball) {
+						if (ball.y + ball.r / 2 >= player.y) {
+							if (
+								player.x <= ball.x &&
+								player.x + player.width >= ball.x
+							) {
+								ball.yVel *= -1;
+								ball.y = player.y - ball.r / 2;
+								this.addPlayerPoint();
+							}
+						}
+					}
+
+					draw() {
+						for (let ball of this.balls) {
+							ball.move();
+							ball.draw();
+
+							this.checkBallWin(ball);
+							this.collission(ball);
+						}
+
+						player.move();
+						player.draw();
+					}
+
+					pausedDraw() {
+						player.draw();
+						for (let ball of this.balls) {
+							ball.draw();
+						}
+					}
+				}
+				let game = new Game();
+
+				let player = new Player();
+
+				function setup() {
+					let canvas = createCanvas(canvasSize.x, canvasSize.y);
+					canvas.parent("#canvas");
+				}
+
+				function draw() {
+					background("#000");
+					if (paused) {
+						game.pausedDraw();
+					} else {
+						game.draw();
+					}
+
+					//Score
+					fill(color);
+					textSize(24);
+					text("Score Player: " + game.playerPoints, 10, 25);
+					text("Score Opponent: " + game.opponentPoints, 10, 50);
+					text("Press 'Enter' to Pause/Play", 300, 25);
+					text("Press 'q' to exit", 300, 50);
+				}
+
+				function keyTyped(key) {
+					if (key.code == "Enter") {
+						if (mouseX >= 0 && mouseX <= canvasSize.x) {
+							if (mouseY >= 0 && mouseY <= canvasSize.y) {
+								paused = !paused;
+							}
+						}
+					}
+					if (key.key == "q" || key.key == "Q") {
+						if (mouseX >= 0 && mouseX <= canvasSize.x) {
+							if (mouseY >= 0 && mouseY <= canvasSize.y) {
+								hide();
+							}
+						}
+					}
+				}
+			</script>
+		</div>
+
+		<div class="card">
+			<h2>This is your classic lorem ipsum</h2>
+			<p>
+				Lorem ipsum dolor, sit amet consectetur adipisicing elit. Alias
+				temporibus voluptate, tenetur veritatis fugit ut commodi
+				dignissimos atque, esse laboriosam veniam consequatur mollitia
+				autem perspiciatis vitae voluptatum, necessitatibus accusamus
+				illum!
+			</p>
+		</div>
+
+		<footer>
+			<h2>This is a footer.</h2>
+			<p>
+				We just learned how to do tables... So this is a table, WITH
+				LINKS????!?!?!??!??!
+			</p>
+			<table>
+				<tr>
+					<th>Page name</th>
+					<th>Button to get there</th>
+				</tr>
+				<tr>
+					<td>About us</td>
+					<td>
+						<a href="./index.html">
+							<button>Click me!</button>
+						</a>
+					</td>
+				</tr>
+				<tr>
+					<td>Surface</td>
+					<td>
+						<a href="./hardware.html">
+							<button>Click me!</button>
+						</a>
+					</td>
+				</tr>
+				<tr>
+					<td>Store</td>
+					<td>
+						<a href="./store.html">
+							<button>Click me!</button>
+						</a>
+					</td>
+				</tr>
+			</table>
+		</footer>
+	</body>
+</html>
