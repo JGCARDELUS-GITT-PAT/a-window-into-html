@@ -74,19 +74,6 @@
 			</nav>
 		</header>
 
-		<div class="card">
-			<h2>Press this button to reset the warning.</h2>
-			<button id="this-button">This button</button>
-			<script>
-				const thisButton = document.getElementById("this-button");
-
-				thisButton.addEventListener("click", () => {
-					localStorage.setItem("modalShown", null);
-					modal.style.display = "block";
-				});
-			</script>
-		</div>
-
 		<div class="card" id="easter-egg">
 			<h2>This is an easter-egg.</h2>
 			<p>
@@ -336,6 +323,19 @@
 						}
 					}
 				}
+			</script>
+		</div>
+
+		<div class="card">
+			<h2>Press this button to reset the warning.</h2>
+			<button id="this-button">This button</button>
+			<script>
+				const thisButton = document.getElementById("this-button");
+
+				thisButton.addEventListener("click", () => {
+					localStorage.setItem("modalShown", null);
+					modal.style.display = "block";
+				});
 			</script>
 		</div>
 
