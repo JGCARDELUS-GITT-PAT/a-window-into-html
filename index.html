@@ -249,13 +249,13 @@
 					}
 
 					collission(ball) {
-						if (ball.y + ball.r / 2 >= player.y) {
+						if (ball.y + ball.r / 2 >= this.player.y) {
 							if (
-								player.x <= ball.x &&
-								player.x + player.width >= ball.x
+								this.player.x <= ball.x &&
+								this.player.x + this.player.width >= ball.x
 							) {
 								ball.yVel *= -1;
-								ball.y = player.y - ball.r / 2;
+								ball.y = this.player.y - ball.r / 2;
 								this.addPlayerPoint();
 							}
 						}
@@ -270,20 +270,18 @@
 							this.collission(ball);
 						}
 
-						player.move();
-						player.draw();
+						this.player.move();
+						this.player.draw();
 					}
 
 					pausedDraw() {
-						player.draw();
+						this.player.draw();
 						for (let ball of this.balls) {
 							ball.draw();
 						}
 					}
 				}
 				let game = new Game();
-
-				let player = new Player();
 
 				function setup() {
 					let canvas = createCanvas(canvasSize.x, canvasSize.y);
